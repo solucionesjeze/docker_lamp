@@ -1,0 +1,167 @@
+:root{                                   /* 1. Variables CSS globales (tokens de diseño). */
+  --bg:#f7f9fc;                          /* 2. Color de fondo general. */
+  --panel:#ffffff;                       /* 3. Color de paneles (tarjetas, header). */
+  --ink:#0f172a;                         /* 4. Color principal del texto. */
+  --muted:#64748b;                       /* 5. Texto secundario. */
+  --brand:#155eef;                       /* 6. Color de marca (botones/enlaces). */
+  --ok:#16a34a;                          /* 7. Verde para estados OK. */
+  --err:#dc2626;                         /* 8. Rojo para errores. */
+  --rad:14px;                            /* 9. Radio de borde estándar. */
+  --gap:20px;                            /* 10. Espaciado estándar. */
+}
+
+*{box-sizing:border-box}                 /* 13. Incluye padding/border en el cálculo de ancho/alto. */
+
+body{
+  margin:0;                              /* 17. Elimina margen por defecto del body. */
+  font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial; /* 18. Tipografía legible por defecto. */
+  color:var(--ink);                      /* 19. Color de texto principal. */
+  background:var(--bg);                  /* 20. Fondo general suave. */
+}
+
+.app{
+  min-height:100vh;                      /* 24. Ocupa la altura de la ventana. */
+  display:flex;                          /* 25. Convierte en contenedor flex. */
+  flex-direction:column;                 /* 26. Eje principal vertical: header → body → footer. */
+}
+
+.app__header{
+  display:flex;                          /* 30. Header como flex row. */
+  align-items:center;                    /* 31. Centra verticalmente su contenido. */
+  justify-content:space-between;         /* 32. Separa (logo | nav | user). */
+  gap:var(--gap);                        /* 33. Espacio entre hijos. */
+  padding:14px 20px;                     /* 34. Relleno interno. */
+  background:var(--panel);               /* 35. Fondo blanco. */
+  box-shadow:0 1px 0 rgba(0,0,0,.06);    /* 36. Sutil línea inferior. */
+}
+.brand{ font-weight:700 }                /* 38. Marca en negrita. */
+.nav{ display:flex; gap:12px }           /* 39. Navegación: fila horizontal con huecos. */
+.nav__link{
+  text-decoration:none;                  /* 41. Enlaces sin subrayado. */
+  color:var(--ink);                      /* 42. Color de texto normal. */
+  padding:8px 10px;                      /* 43. Área clicable mayor. */
+  border-radius:8px                      /* 44. Bordes suaves. */
+}
+.nav__link:hover{
+  background:#eef2ff;                    /* 47. Fondo suave al hover. */
+  color:var(--brand)                     /* 48. Resalta con color de marca. */
+}
+.user{ color:var(--muted) }              /* 50. Tono secundario para el indicador de usuario. */
+
+.app__body{
+  display:flex;                          /* 54. Layout principal: sidebar + content. */
+  gap:var(--gap);                        /* 55. Separación entre columnas. */
+  padding:var(--gap);                    /* 56. Margen interno alrededor. */
+}
+
+.sidebar{
+  background:var(--panel);               /* 60. Panel blanco. */
+  border-radius:var(--rad);              /* 61. Esquinas redondeadas. */
+  padding:16px;                          /* 62. Separación interna. */
+  flex: 0 0 260px;                       /* 63. Fija el ancho: basis 260px, no crece, no encoge. */
+  display:flex; flex-direction:column;   /* 64. Coloca contenidos en columna. */
+  gap:10px;                              /* 65. Separación entre bloques. */
+}
+.badge{
+  padding:4px 8px;                       /* 68. Pastilla pequeña (estado). */
+  border-radius:999px;                   /* 69. Circular. */
+  font-size:12px                         /* 70. Tamaño de texto reducido. */
+}
+.badge--ok{ background:#e8f7ee; color:var(--ok) }     /* 72. Estado OK en verde. */
+.badge--error{ background:#fdecec; color:var(--err) } /* 73. Estado ERROR en rojo. */
+
+.content{
+  flex: 1 1 auto;                        /* 76. Columna fluida (ocupa el resto). */
+  display:flex; flex-direction:column;   /* 77. Contenido apilado verticalmente. */
+  gap:var(--gap);                        /* 78. Espacio entre secciones. */
+}
+
+.card{
+  background:var(--panel);               /* 82. Tarjeta blanca. */
+  border-radius:var(--rad);              /* 83. Borde redondeado. */
+  padding:16px;                          /* 84. Relleno interno. */
+  display:flex; flex-direction:column;   /* 85. Contenido en columna. */
+  gap:12px;                              /* 86. Separación entre elementos internos. */
+}
+
+.form{
+  display:flex;                          /* 90. Fila de controles. */
+  flex-wrap:wrap;                        /* 91. Rompe a segunda línea en pantallas pequeñas. */
+  gap:12px;                              /* 92. Huecos entre controles. */
+}
+.form label{ width:100% }                /* 94. La etiqueta ocupa toda la fila (accesible/legible). */
+.form input{
+  flex: 1 1 260px;                       /* 96. Campo flexible: base 260px, puede crecer/encoger. */
+  padding:10px 12px;                     /* 97. Área de clic cómoda. */
+  border:1px solid #e2e8f0;              /* 98. Borde suave. */
+  border-radius:10px                     /* 99. Curvatura amigable. */
+}
+.btn{
+  flex: 0 0 auto;                        /* 102. Botón no crece/encoge. */
+  padding:10px 16px;                     /* 103. Relleno cómodo. */
+  border:0; border-radius:10px;          /* 104. Sin borde, esquinas suaves. */
+  background:var(--brand); color:#fff;   /* 105. Color de marca + texto blanco. */
+  cursor:pointer                          /* 106. Cursor de mano. */
+}
+.btn:hover{ filter:brightness(1.05) }     /* 108. Leve realce al pasar el ratón. */
+
+.cards{
+  display:flex;                          /* 112. Contenedor de tarjetas como fila flex. */
+  flex-wrap:wrap;                        /* 113. Permite múltiples filas (responsive). */
+  gap:16px                               /* 114. Huecos entre tarjetas. */
+}
+.msg{
+  flex: 1 1 260px;                       /* 117. Tarjeta flexible; base 260px. */
+  background:#f8fafc;                    /* 118. Fondo gris muy claro. */
+  border:1px solid #e2e8f0;              /* 119. Borde sutil. */
+  border-radius:12px;                    /* 120. Bordes redondeados. */
+  padding:12px;                          /* 121. Relleno. */
+  display:flex; flex-direction:column;   /* 122. Contenido apilado verticalmente. */
+  gap:8px                                /* 123. Separación interna. */
+}
+.msg__head{
+  display:flex;                          /* 126. Encabezado como fila. */
+  justify-content:space-between;         /* 127. ID a la izquierda, hora a la derecha. */
+  align-items:center;                    /* 128. Alineación vertical central. */
+  color:var(--muted);                    /* 129. Texto secundario. */
+  font-size:12px                         /* 130. Tamaño pequeño. */
+}
+.msg__text{ margin:0 }                   /* 132. Quita margen por defecto del párrafo. */
+
+.app__footer{
+  margin-top:auto;                       /* 135. Empuja el footer al final (flex column). */
+  padding:14px 20px;                     /* 136. Relleno. */
+  color:var(--muted)                     /* 137. Tono secundario. */
+}
+
+@media (max-width: 860px){               /* 140. Reglas para pantallas pequeñas. */
+  .app__body{ flex-direction:column }    /* 141. Sidebar y contenido en columna. */
+  .sidebar{ order:2 }                    /* 142. Sidebar debajo (order cambia orden visual). */
+  .content{ order:1 }                    /* 143. Contenido arriba. */
+}
+.muted{ color:var(--muted) }             /* 145. Clase de texto apagado. */
+.help.error{ color:var(--err) }          /* 146. Estilo de error. */
+
+/* ===== TABLERO FLEXBOX ===== */
+.board {
+  display: flex;              /* Contenedor flexible */
+  flex-wrap: wrap;            /* Permite salto de línea en pantallas pequeñas */
+  gap: var(--gap);            /* Espaciado entre columnas */
+}
+
+.board .column {
+  flex: 1 1 300px;            /* Crece, encoge, base 300px */
+  background: var(--panel);
+  border-radius: var(--rad);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Responsive: cambiar orden en pantallas pequeñas */
+@media (max-width: 860px) {
+  #ToDo { order: 1; }
+  #Doing { order: 3; }  /* En móvil se verá último */
+  #Done  { order: 2; }
+}
