@@ -19,3 +19,4 @@ try {
   echo "<h1>Error conectando a MySQL</h1>"; 
   echo "<pre>" . htmlspecialchars($e->getMessage()) . "</pre>"; 
 }
+#Comentario para github
